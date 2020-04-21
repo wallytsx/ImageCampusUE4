@@ -7,7 +7,7 @@
 #include "HealthComponent.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS()
 class IMAGECAMPUSPROJECT_API UHealthComponent : public UActorComponent
 {
 	GENERATED_BODY()
