@@ -5,10 +5,13 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "ICProjectile.h"
+#include "ICDamageable.h"
 #include "ImageCampusProjectCharacter.generated.h"
 
+class UHealthComponent;
+
 UCLASS(config=Game)
-class AImageCampusProjectCharacter : public ACharacter
+class AImageCampusProjectCharacter : public ACharacter, public IICDamageable
 {
 	GENERATED_BODY()
 
@@ -21,6 +24,10 @@ class AImageCampusProjectCharacter : public ACharacter
 	class UCameraComponent* FollowCamera;
 public:
 	AImageCampusProjectCharacter();
+
+
+	virtual UHealthComponent* GetHealthComponent() const override { return HealthComponent; }
+
 
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
@@ -37,6 +44,9 @@ public:
 	void Fire();
 
 protected:
+
+	UPROPERTY(EditAnywhere)
+	UHealthComponent* HealthComponent;
 
 	/** Resets HMD orientation in VR. */
 	void OnResetVR();
