@@ -4,17 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "HealthComponent.generated.h"
+#include "HealthComponentM.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class IMAGECAMPUSPROJECT_API UHealthComponent : public UActorComponent
+class IMAGECAMPUSPROJECT_API UHealthComponentM : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UHealthComponent();
+	UHealthComponentM();
 	UPROPERTY(EditAnywhere)
 	int Health;
 

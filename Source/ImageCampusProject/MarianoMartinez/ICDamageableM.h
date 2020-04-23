@@ -1,21 +1,22 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ICDamageable.generated.h"
+#include "HealthComponentM.h"
+#include "ICDamageableM.generated.h"
 
 /* must have BlueprintType as a specifier to have this interface exposed to blueprints
    with this line you can easily add this interface to any blueprint class */
 UINTERFACE()
-class IMAGECAMPUSPROJECT_API UICDamageable : public UInterface
+class IMAGECAMPUSPROJECT_API UICDamageableM : public UInterface
 {
 	GENERATED_BODY()
 };
 
-class IMAGECAMPUSPROJECT_API IICDamageable
+class IMAGECAMPUSPROJECT_API IICDamageableM
 {
 	GENERATED_BODY()
 	
 public:
 
-	virtual class UHealthComponent* GetHealthComponent() const = 0;
+	virtual class UHealthComponentM* GetHealthComponent() const = 0;
 };

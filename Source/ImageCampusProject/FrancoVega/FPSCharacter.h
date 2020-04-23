@@ -9,7 +9,7 @@
 #include "FPSCharacter.generated.h"
 
 UCLASS()
-class IMAGECAMPUSPROJECT_API AFPSCharacter : public ACharacter , public IDamageable
+class IMAGECAMPUSPROJECT_API AFPSCharacter : public ACharacter , public IDamageableFrank
 {
 	GENERATED_BODY()
 
@@ -62,7 +62,7 @@ protected:
 		class USceneComponent* FP_MuzzleLocation;
 
 	UPROPERTY(EditAnywhere)
-		UHealthComponent* HealthComponent;
+		UHealthComponentFrank* HealthComponent;
 
 public:	
 	// Called every frame
@@ -93,5 +93,5 @@ public:
 	/** Returns Mesh1P subobject **/
 	FORCEINLINE class USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
 
-	virtual UHealthComponent* GetHealthComponent() const override { return HealthComponent; }
+	virtual UHealthComponentFrank* GetHealthComponent() const override { return HealthComponent; }
 };

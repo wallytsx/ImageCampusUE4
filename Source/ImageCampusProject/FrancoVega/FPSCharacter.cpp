@@ -40,7 +40,7 @@ AFPSCharacter::AFPSCharacter()
 	PlayerGun->Mesh1P = Mesh1P;
 	PlayerGun->FireAnimation = FireAnimation;
 
-	HealthComponent = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
+	HealthComponent = CreateDefaultSubobject<UHealthComponentFrank>(TEXT("HealthComponent"));
 }
 
 // Called when the game starts or when spawned
