@@ -3,6 +3,7 @@
 #include "Engine.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+//#include "ImageCampusProject/TestInterface.h"
 #include "ActorWeapon.generated.h"
 
 UENUM(BlueprintType)
