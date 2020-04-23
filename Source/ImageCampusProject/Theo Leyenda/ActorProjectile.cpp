@@ -1,5 +1,6 @@
-#include "Engine/World.h"
 #include "ActorProjectile.h"
+#include "Engine/World.h"
+
 // Sets default values
 AActorProjectile::AActorProjectile()
 {
