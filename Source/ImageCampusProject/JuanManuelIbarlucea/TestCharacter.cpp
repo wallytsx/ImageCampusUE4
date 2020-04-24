@@ -1,5 +1,6 @@
 #include "TestCharacter.h"
 #include "Components/InputComponent.h"
+#include "ImageCampusProject/HealthComponent.h"
 
 
 // Sets default values
@@ -34,9 +35,9 @@ void ATestCharacter::Tick(float DeltaTime)
 	
 }
 
-void ATestCharacter::GetHit(int Damage)
+void ATestCharacter::GetHit()
 {
-	HealthComponent->GetHit(Damage);
+	//HealthComponent->GetHit(Damage);
 }
 
 // Called to bind functionality to input
@@ -44,8 +45,6 @@ void ATestCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAction("GetHit", IE_Pressed, this, &ThisClass::GetHit);
-
-
+	PlayerInputComponent->BindAction(TEXT("GetHit"), IE_Pressed, this, &ThisClass::GetHit);
 }
 
