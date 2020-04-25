@@ -25,6 +25,5 @@ public:
 	virtual class UHealthComponent_JM* GetHealthComponent() const = 0;
 	virtual void GetHit(int _damage) const = 0;
 
-	virtual void OnTakeDamage(float Damage);
 
 };

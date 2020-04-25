@@ -21,3 +21,10 @@ void UHealthComponent::BeginPlay()
 	// ...
 	
 }
+
+void UHealthComponent::ApplyDamage(float Damage)
+{
+	Health -= Damage;
+
+	UE_LOG(LogTemp, Warning, TEXT("Aplico danio %f"), Health);
+}
