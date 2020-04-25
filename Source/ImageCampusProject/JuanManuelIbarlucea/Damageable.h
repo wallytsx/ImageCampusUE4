@@ -23,7 +23,7 @@ class IMAGECAMPUSPROJECT_API IDamageable
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	virtual class UHealthComponent_JM* GetHealthComponent() const = 0;
-	virtual void GetHit(int _damage) const = 0;
+	virtual void ApplyDamage(int _damage) const = 0;
 
 	virtual void OnTakeDamage(float Damage);
 

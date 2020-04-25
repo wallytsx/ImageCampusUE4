@@ -35,9 +35,9 @@ void ATestCharacter::Tick(float DeltaTime)
 	
 }
 
-void ATestCharacter::GetHit(int _damage) const
+void ATestCharacter::ApplyDamage(int _damage) const
 {
-	HealthComponent->GetHit(_damage);
+	HealthComponent->ApplyDamage(_damage);
 }
 
 // Called to bind functionality to input
