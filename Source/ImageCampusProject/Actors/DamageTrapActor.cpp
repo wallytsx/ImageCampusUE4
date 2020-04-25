@@ -3,6 +3,7 @@
 #include "DamageTrapActor.h"
 #include "Components/BoxComponent.h"
 #include "TimerManager.h"
+#include "ImageCampusProject/ICDamageable.h"
 
 // Sets default values
 ADamageTrapActor::ADamageTrapActor()
@@ -22,6 +23,7 @@ void ADamageTrapActor::BeginPlay()
 	Super::BeginPlay();
 	
 	DamageVolume->OnComponentBeginOverlap.AddUniqueDynamic(this, &ThisClass::OnDamageVolumeOverlapped);
+	DamageVolume->OnComponentEndOverlap.AddUniqueDynamic(this, &ThisClass::OnDamageVolumeOverlapeedEnd);
 
 	GetWorld()->GetTimerManager().SetTimer(DamageTimerHandle, this, &ThisClass::DamegeVolumeTick, DamageInterval, true);
 }
@@ -33,6 +35,11 @@ void ADamageTrapActor::EndPlay(EEndPlayReason::Type EndPlayReason)
 	if (DamageVolume->OnComponentBeginOverlap.IsAlreadyBound(this, &ThisClass::OnDamageVolumeOverlapped))
 	{
 		DamageVolume->OnComponentBeginOverlap.RemoveDynamic(this, &ThisClass::OnDamageVolumeOverlapped);
+	}	
+
+	if (DamageVolume->OnComponentEndOverlap.IsAlreadyBound(this, &ThisClass::OnDamageVolumeOverlapeedEnd))
+	{
+		DamageVolume->OnComponentEndOverlap.RemoveDynamic(this, &ThisClass::OnDamageVolumeOverlapeedEnd);
 	}
 }
 
@@ -49,10 +56,36 @@ void ADamageTrapActor::OnDamageVolumeOverlapped(UPrimitiveComponent* OverlappedC
 	if (Other == nullptr)
 		return;
 
-	UE_LOG(LogTemp, Warning, TEXT("Other Actor Name: %s"), *Other->GetName());
+	IICDamageable* Damageable = Cast<IICDamageable>(Other);
+	
+	if (Damageable == nullptr)
+		return;
+
+	ActorsToDamage.Add(Other);
+
+	UE_LOG(LogTemp, Warning, TEXT(" OnDamageVolumeOverlapped - Other Actor Name: %s"), *Other->GetName());
+}
+
+void ADamageTrapActor::OnDamageVolumeOverlapeedEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	if (OtherActor == nullptr)
+		return;
+
+	ActorsToDamage.Remove(OtherActor);
+
+	UE_LOG(LogTemp, Warning, TEXT("OnDamageVolumeOverlapeedEnd - Other Actor Name: %s"), *OtherActor->GetName());
 }
 
 void ADamageTrapActor::DamegeVolumeTick()
 {
 	UE_LOG(LogTemp, Warning, TEXT("DamegeVolumeTick"));
+
+	for (AActor* Actor : ActorsToDamage)
+	{
+		IICDamageable* Damageable = Cast<IICDamageable>(Actor);
+
+		Actor->TakeDamage();
+
+		Damageable->TakeDamage();
+	}
 }
