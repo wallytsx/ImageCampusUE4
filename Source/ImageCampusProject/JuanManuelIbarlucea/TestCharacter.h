@@ -34,7 +34,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void GetHit(int _damage) const override;
+	UFUNCTION()
+	void ApplyDamage(int _damage) const override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
