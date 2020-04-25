@@ -8,8 +8,10 @@
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+
 class IMAGECAMPUSPROJECT_API UHealthComponentM : public UActorComponent
 {
+
 	GENERATED_BODY()
 
 public:	
