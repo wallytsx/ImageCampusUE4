@@ -8,6 +8,8 @@
 #include "TestInterface.h"
 #include "FPSCharacter.generated.h"
 
+class UHealthComponentFrank;
+
 UCLASS()
 class IMAGECAMPUSPROJECT_API AFPSCharacter : public ACharacter , public IDamageableFrank
 {

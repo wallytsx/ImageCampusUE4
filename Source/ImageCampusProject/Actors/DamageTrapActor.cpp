@@ -84,8 +84,6 @@ void ADamageTrapActor::DamegeVolumeTick()
 	{
 		IICDamageable* Damageable = Cast<IICDamageable>(Actor);
 
-		Actor->TakeDamage();
-
-		Damageable->TakeDamage();
+		Damageable->OnTakeDamage(10.0f);
 	}
 }

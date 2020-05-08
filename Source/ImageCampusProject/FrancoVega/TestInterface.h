@@ -1,8 +1,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "HealthComponentFrank.h"
+//#include "HealthComponentFrank.h"
 #include "TestInterface.generated.h"
+
+//class UHealthComponentFrank;
 
 /* must have BlueprintType as a specifier to have this interface exposed to blueprints
    with this line you can easily add this interface to any blueprint class */
@@ -17,7 +19,9 @@ class IMAGECAMPUSPROJECT_API IDamageableFrank
 	GENERATED_BODY()
 
 public:
-	
+
 	virtual class UHealthComponentFrank* GetHealthComponent() const = 0;
+
+	virtual void OnTakeDamage(float Damage);
 
 };
