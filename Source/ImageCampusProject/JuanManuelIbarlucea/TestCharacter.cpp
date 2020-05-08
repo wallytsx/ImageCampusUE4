@@ -1,6 +1,6 @@
 #include "TestCharacter.h"
 #include "Components/InputComponent.h"
-#include "ImageCampusProject/HealthComponent.h"
+//#include "ImageCampusProject/HealthComponent.h"
 
 
 // Sets default values
@@ -10,7 +10,7 @@ ATestCharacter::ATestCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	//Health Component
-	HealthComponent = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
+//	HealthComponent = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
 
 }
 
@@ -22,7 +22,7 @@ void ATestCharacter::BeginPlay()
 }
 
 
-UHealthComponent* ATestCharacter::GetHealthComponent() const
+UHealthComponent_JM* ATestCharacter::GetHealthComponent() const
 {
 	return HealthComponent;
 }
@@ -35,9 +35,9 @@ void ATestCharacter::Tick(float DeltaTime)
 	
 }
 
-void ATestCharacter::GetHit()
+void ATestCharacter::GetHit(int _damage) const
 {
-	//HealthComponent->GetHit(Damage);
+	//HealthComponent->GetHit(_damage);
 }
 
 // Called to bind functionality to input
@@ -45,6 +45,6 @@ void ATestCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAction(TEXT("GetHit"), IE_Pressed, this, &ThisClass::GetHit);
+	//PlayerInputComponent->BindAction(TEXT("GetHit"), IE_Pressed, this, &ThisClass::GetHit);
 }
 

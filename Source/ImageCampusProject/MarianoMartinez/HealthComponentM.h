@@ -8,13 +8,15 @@
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+
 class IMAGECAMPUSPROJECT_API UHealthComponentM : public UActorComponent
 {
+
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UHealthComponentM();
+	UHealthComponent_JM();
 	UPROPERTY(EditAnywhere)
 	int Health;
 

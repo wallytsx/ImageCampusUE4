@@ -16,9 +16,13 @@ public:
 	// Sets default values for this component's properties
 	UHealthComponent();
 
+	UPROPERTY(EditAnywhere)
+	float Health;
+	
+	virtual void ApplyDamage(float Damage);
 protected:
 
 	// Called when the game starts
 	virtual void BeginPlay() override;
-
+	
 };
