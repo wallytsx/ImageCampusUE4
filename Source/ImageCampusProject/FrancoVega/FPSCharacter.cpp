@@ -7,6 +7,7 @@
 #include "GameFramework/InputSettings.h"
 #include "Components/CapsuleComponent.h"
 #include "Camera/CameraComponent.h"
+#include "HealthComponentFrank.h"
 
 // Sets default values
 AFPSCharacter::AFPSCharacter()
@@ -40,7 +41,7 @@ AFPSCharacter::AFPSCharacter()
 	PlayerGun->Mesh1P = Mesh1P;
 	PlayerGun->FireAnimation = FireAnimation;
 
-	HealthComponent = CreateDefaultSubobject<UHealthComponentFrank>(TEXT("HealthComponent"));
+	HealthComponent = CreateDefaultSubobject<UHealthComponentFrank>(TEXT("HealthComponent2"));
 }
 
 // Called when the game starts or when spawned
@@ -51,6 +52,10 @@ void AFPSCharacter::BeginPlay()
 	PlayerGun->FireAnimation = FireAnimation;
 	OriginalWalkSpeed = WalkSpeed;
 	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+
+	
+	if (HealthComponent == nullptr)
+		UE_LOG(LogTemp, Warning, TEXT("wtf"));
 	
 }
 

@@ -10,7 +10,7 @@ UHealthComponentFrank::UHealthComponentFrank()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	Health = 0;
+	//Health = MaxHealth;
 
 	// ...
 }
@@ -21,16 +21,21 @@ void UHealthComponentFrank::BeginPlay()
 {
 	Super::BeginPlay();
 
+	Health = MaxHealth;
+
 	// ...
 	
 }
 
-
-// Called every frame
-void UHealthComponentFrank::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UHealthComponentFrank::TakeDamage(float amount)
 {
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	Health -= amount;
 
-	// ...
+	if (Health <= 0)
+	{
+		Health = 0;
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("Damage applied, current health is : %i"), Health);
 }
 
