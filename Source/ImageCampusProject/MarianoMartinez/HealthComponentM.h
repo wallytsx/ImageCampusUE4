@@ -16,7 +16,7 @@ class IMAGECAMPUSPROJECT_API UHealthComponentM : public UActorComponent
 
 public:	
 	// Sets default values for this component's properties
-	UHealthComponent_JM();
+	UHealthComponentM();
 	UPROPERTY(EditAnywhere)
 	int Health;
 
