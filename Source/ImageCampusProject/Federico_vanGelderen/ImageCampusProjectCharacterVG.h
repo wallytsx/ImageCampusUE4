@@ -99,6 +99,8 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	// End of APawn interface
 
+	virtual void BeginPlay() override;
+
 public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
@@ -108,5 +110,7 @@ public:
 	void KillPlayer() { bIsDead = true; }
 
 	bool GetPlayerDead() const { return bIsDead; }
+	
+	UFUNCTION()
+	void OnDamageRecived(const AActor* DamageCauser);
 };
-

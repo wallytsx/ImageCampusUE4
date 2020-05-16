@@ -7,7 +7,6 @@
 void APlayerStateVG::RemovePlayerLive()
 {
 	CurrentPlayerLives -= 1;
-	GetPawn()->Destroy();
 }
 
 void APlayerStateVG::BeginPlay()

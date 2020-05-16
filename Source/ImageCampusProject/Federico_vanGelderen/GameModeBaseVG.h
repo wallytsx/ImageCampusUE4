@@ -19,7 +19,13 @@ protected:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<APawn> MyDefaultPawnClass;
 
+	FTimerHandle RespawnTimerHandle;
+
 	virtual void InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage) override;
+	void RespawnPlayer(class APlayerStateVG* PlayerState, APlayerController* PlayerController);
 public:
+	UPROPERTY(EditAnywhere)
+	float RespawnTime;
+	
 	void OnPlayerDeath(APawn* PlayerPawn);
 };

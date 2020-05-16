@@ -21,9 +21,9 @@ public:
 
 	void ApplyDamage(float Damage, const AActor* DamageCauser);
 
-protected:
 	UPROPERTY(BlueprintAssignable)
 	FOnDamageRecived OnDamageRecived;
+protected:
 	
 	// Called when the game starts
 	virtual void BeginPlay() override;

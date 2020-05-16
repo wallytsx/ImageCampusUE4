@@ -9,6 +9,7 @@
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "HealthComponentVG.h"
+#include "GameModeBaseVG.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AImageCampusProjectCharacter
@@ -80,6 +81,13 @@ void AImageCampusProjectCharacterVG::SetupPlayerInputComponent(class UInputCompo
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AImageCampusProjectCharacterVG::OnResetVR);
+}
+
+void AImageCampusProjectCharacterVG::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	HealthComponent->OnDamageRecived.AddDynamic(this, &AImageCampusProjectCharacterVG::OnDamageRecived);
 }
 
 void AImageCampusProjectCharacterVG::Fire()
@@ -155,4 +163,15 @@ float AImageCampusProjectCharacterVG::TakeDamage(float DamageAmount, struct FDam
 	HealthComponent->Health -= DamageAmount;
 
 	return DamageAmount;
+}
+
+void AImageCampusProjectCharacterVG::OnDamageRecived(const AActor* DamageCauser)
+{
+	if(HealthComponent->Health <= 0)
+	{
+		KillPlayer();
+		AGameModeBaseVG* GameMode = Cast<AGameModeBaseVG>(GetWorld()->GetAuthGameMode());
+		if (GameMode != nullptr)
+			GameMode->OnPlayerDeath(this);
+	}
 }

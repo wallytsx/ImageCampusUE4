@@ -20,16 +20,6 @@ void UHealthComponentVG::ApplyDamage(float Damage, const AActor* DamageCauser)
 {
 	Health -= Damage;
 	OnDamageRecived.Broadcast(DamageCauser);
-	if (Health <= 0)
-	{
-		AImageCampusProjectCharacterVG* Owner = Cast<AImageCampusProjectCharacterVG>(GetOwner());
-		if (Owner == nullptr)
-			return;
-		Owner->KillPlayer();
-		AGameModeBaseVG* GameMode = Cast<AGameModeBaseVG>(GetWorld()->GetAuthGameMode());
-		if (GameMode != nullptr)
-			GameMode->OnPlayerDeath(Owner);
-	}
 }
 
 // Called when the game starts
