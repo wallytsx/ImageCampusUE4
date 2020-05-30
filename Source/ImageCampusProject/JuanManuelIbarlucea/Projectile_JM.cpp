@@ -1,5 +1,5 @@
-#include "Components/StaticMeshComponent.h"
 #include "Projectile_JM.h"
+#include "Components/StaticMeshComponent.h"
 
 
 AProjectile_JM::AProjectile_JM()
