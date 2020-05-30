@@ -22,6 +22,7 @@ class AImageCampusProjectCharacter : public ACharacter, public IICDamageable
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+
 public:
 	AImageCampusProjectCharacter();
 
@@ -43,7 +44,17 @@ public:
 
 	void Fire();
 
-	
+
+
+
+
+	UPROPERTY(EditAnywhere)
+	FName WeaponAttachSocket;
+
+	UPROPERTY()
+	class ABaseWeapon* CurrentWeapon;
+
+	virtual void OnPickupTriggered(class ABaseWeapon* Weapon);
 
 protected:
 

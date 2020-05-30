@@ -16,6 +16,6 @@ class IMAGECAMPUSPROJECT_API IICDamageable
 public:
 	
 	virtual class UHealthComponent* GetHealthComponent() const = 0;
-	virtual void OnTakeDamage(float Damage);
+	virtual void OnTakeDamage(float Damage, const AActor* DamageCauser);
 
 };

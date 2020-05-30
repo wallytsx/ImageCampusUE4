@@ -6,6 +6,8 @@
 #include "Components/ActorComponent.h"
 #include "HealthComponent.generated.h"
 
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnDamageReceivedNoDynamic, const AActor*);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDamageReceived, const AActor*, dasfadsf);
 
 UCLASS()
 class IMAGECAMPUSPROJECT_API UHealthComponent : public UActorComponent
@@ -19,10 +21,14 @@ public:
 	UPROPERTY(EditAnywhere)
 	float Health;
 	
-	virtual void ApplyDamage(float Damage);
+	virtual void ApplyDamage(float Damage, const AActor* DamageCauser);
 protected:
+
+	FOnDamageReceivedNoDynamic OnNoDynamicDamageReceived;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnDamageReceived OnDamageReceived;
 
 	// Called when the game starts
 	virtual void BeginPlay() override;
-	
 };

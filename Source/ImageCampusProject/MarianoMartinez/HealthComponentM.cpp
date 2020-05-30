@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "HealthComponentM.h"
+/*#include "HealthComponentM.h"
 
 // Sets default values for this component's properties
 UHealthComponent_JM::UHealthComponent_JM()
@@ -30,5 +30,5 @@ void UHealthComponent_JM::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
-}
+}*/
 

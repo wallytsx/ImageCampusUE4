@@ -25,6 +25,7 @@ void ADamageTrapActor::BeginPlay()
 	DamageVolume->OnComponentBeginOverlap.AddUniqueDynamic(this, &ThisClass::OnDamageVolumeOverlapped);
 	DamageVolume->OnComponentEndOverlap.AddUniqueDynamic(this, &ThisClass::OnDamageVolumeOverlapeedEnd);
 
+
 	GetWorld()->GetTimerManager().SetTimer(DamageTimerHandle, this, &ThisClass::DamegeVolumeTick, DamageInterval, true);
 }
 
@@ -56,14 +57,15 @@ void ADamageTrapActor::OnDamageVolumeOverlapped(UPrimitiveComponent* OverlappedC
 	if (Other == nullptr)
 		return;
 
-	IICDamageable* Damageable = Cast<IICDamageable>(Other);
-	
-	if (Damageable == nullptr)
-		return;
+	ActorsToDamage.AddUnique(Other);
 
-	ActorsToDamage.Add(Other);
+	OnActorOverlapped(Other);
+	OnActorOverlappedNative(Other);
+}
 
-	UE_LOG(LogTemp, Warning, TEXT(" OnDamageVolumeOverlapped - Other Actor Name: %s"), *Other->GetName());
+void ADamageTrapActor::OnActorOverlappedNative_Implementation(AActor* Actor)
+{
+	UE_LOG(LogTemp, Warning, TEXT(" OnActorOverlappedNative_Implementation - Other Actor Name: %s"), *Actor->GetName());
 }
 
 void ADamageTrapActor::OnDamageVolumeOverlapeedEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
@@ -84,6 +86,6 @@ void ADamageTrapActor::DamegeVolumeTick()
 	{
 		IICDamageable* Damageable = Cast<IICDamageable>(Actor);
 
-		Damageable->OnTakeDamage(10.0f);
+		//Damageable->OnTakeDamage(DamageToCause, this);
 	}
 }

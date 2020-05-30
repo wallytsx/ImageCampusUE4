@@ -12,7 +12,7 @@
 class UHealthComponent_JM;
 
 UCLASS()
-class IMAGECAMPUSPROJECT_API ATestCharacter : public ACharacter, public IDamageable
+class IMAGECAMPUSPROJECT_API ATestCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -23,19 +23,18 @@ public:
 protected:
 
 	//Variables
-	UPROPERTY(VisibleAnywhere)
-	UHealthComponent_JM* HealthComponent;
+	/*UPROPERTY(VisibleAnywhere)
+	UHealthComponent_JM* HealthComponent;*/
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:
-	virtual UHealthComponent_JM* GetHealthComponent() const override;
-	// Called every frame
+	//virtual UHealthComponent_JM* GetHealthComponent() const override;
 	virtual void Tick(float DeltaTime) override;
 
-	UFUNCTION()
-	void ApplyDamage(int _damage) const override;
+	/*UFUNCTION()
+	void ApplyDamage(int _damage) const override;*/
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

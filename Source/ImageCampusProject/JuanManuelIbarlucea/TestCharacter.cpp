@@ -22,10 +22,10 @@ void ATestCharacter::BeginPlay()
 }
 
 
-UHealthComponent_JM* ATestCharacter::GetHealthComponent() const
+/*UHealthComponent_JM* ATestCharacter::GetHealthComponent() const
 {
-	return HealthComponent;
-}
+	return nullptr;
+}*/
 
 // Called every frame
 void ATestCharacter::Tick(float DeltaTime)
@@ -35,10 +35,10 @@ void ATestCharacter::Tick(float DeltaTime)
 	
 }
 
-void ATestCharacter::GetHit(int _damage) const
+/*void ATestCharacter::GetHit(int _damage) const
 {
 	//HealthComponent->GetHit(_damage);
-}
+}*/
 
 // Called to bind functionality to input
 void ATestCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

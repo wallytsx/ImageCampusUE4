@@ -2,12 +2,12 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+/*#include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "HealthComponentM.generated.h"
+#include "HealthComponentM.generated.h"*/
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+/*UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 
 class IMAGECAMPUSPROJECT_API UHealthComponentM : public UActorComponent
 {
@@ -29,4 +29,4 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 		
-};
+};*/

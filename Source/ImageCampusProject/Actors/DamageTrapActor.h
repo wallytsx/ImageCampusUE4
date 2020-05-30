@@ -26,7 +26,7 @@ protected:
 	UPROPERTY()
 	class USceneComponent* RootComp;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	class UBoxComponent* DamageVolume;
 
 	UPROPERTY(EditAnywhere)
@@ -46,6 +46,12 @@ protected:
 
 	UFUNCTION()
 	virtual void OnDamageVolumeOverlapeedEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnActorOverlapped(AActor* Actor);
+
+	UFUNCTION(BlueprintNativeEvent)
+	void OnActorOverlappedNative(AActor* Actor);
 
 	UFUNCTION()
 	void DamegeVolumeTick();
