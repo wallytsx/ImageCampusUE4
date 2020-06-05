@@ -9,6 +9,9 @@
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "HealthComponent.h"
+#include "Actors/BaseWeapon.h"
+#include "Components/StaticMeshComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AImageCampusProjectCharacter
@@ -82,16 +85,32 @@ void AImageCampusProjectCharacter::SetupPlayerInputComponent(class UInputCompone
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AImageCampusProjectCharacter::OnResetVR);
 }
 
+void AImageCampusProjectCharacter::OnPickupTriggered(ABaseWeapon* Weapon)
+{
+	if (CurrentWeapon != nullptr)
+	{
+		CurrentWeapon->Drop();
+	}
+
+	CurrentWeapon = Weapon;
+	CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, WeaponAttachSocket);
+}
+
 void AImageCampusProjectCharacter::Fire()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Fire Called"));
 
-	FTransform Transform = GetActorTransform();
+		/*FTransform Transform = GetActorTransform();
 	FVector Location = Transform.GetLocation();
 
 	Transform.SetLocation(Location + GetActorForwardVector() * 100.0f);
 
-	auto* Projectile = GetWorld()->SpawnActor<AICProjectile>(ProjectileClass.Get(), Transform);
+	auto* Projectile = GetWorld()->SpawnActor<AICProjectile>(ProjectileClass.Get(), Transform*/
+
+	if (CurrentWeapon != nullptr)
+	{
+		CurrentWeapon->Fire();
+	}
 }
 
 void AImageCampusProjectCharacter::OnResetVR()

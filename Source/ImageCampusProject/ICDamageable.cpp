@@ -3,7 +3,7 @@
 #include "ImageCampusProject/HealthComponent.h"
 #include "GameFramework/Actor.h"
 
-void IICDamageable::OnTakeDamage(float Damage) 
+void IICDamageable::OnTakeDamage(float Damage, const AActor* DamageCauser) 
 {
 	UHealthComponent* HealthComponent = GetHealthComponent();
 	if (HealthComponent == nullptr)
@@ -16,5 +16,5 @@ void IICDamageable::OnTakeDamage(float Damage)
 	Damage = HealthComponentOwner->TakeDamage(Damage, DamageEvent,nullptr,nullptr);
 
 
-	HealthComponent->ApplyDamage(Damage);
+	HealthComponent->ApplyDamage(Damage, DamageCauser);
 }

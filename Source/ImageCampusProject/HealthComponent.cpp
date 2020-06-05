@@ -22,9 +22,12 @@ void UHealthComponent::BeginPlay()
 	
 }
 
-void UHealthComponent::ApplyDamage(float Damage)
+void UHealthComponent::ApplyDamage(float Damage, const AActor* DamageCauser)
 {
 	Health -= Damage;
 
 	UE_LOG(LogTemp, Warning, TEXT("Aplico danio %f"), Health);
+
+	OnDamageReceived.Broadcast(DamageCauser);
+	OnNoDynamicDamageReceived.Broadcast(DamageCauser);
 }
