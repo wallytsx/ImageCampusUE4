@@ -13,9 +13,6 @@ UCLASS()
 class IMAGECAMPUSPROJECT_API UActorSpawnerWidget : public UUserWidget
 {
 	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere)
-	AActor* ActorReference;
 	
 	UPROPERTY(EditDefaultsOnly, Category = Projectile)
 	TSubclassOf<AActor> SpawnClass;

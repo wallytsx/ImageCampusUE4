@@ -13,7 +13,6 @@ void UActorManagerWidget::NativeOnInitialized()
 
 	TArray<AActor*> Actors;
 	UGameplayStatics::GetAllActorsOfClass(this, AActorContainer::StaticClass(), Actors);
-
 	for (AActor* Actor : Actors)
 	{
 		ActorContainers.Add(Cast<AActorContainer>(Actor));
@@ -33,3 +32,12 @@ void UActorManagerWidget::OnButtonClicked()
 	UE_LOG(LogTemp, Log, TEXT("OnButtonClicked - %i"), Index);
 }
 
+void UActorManagerWidget::OnEntryClicked(UActorManagerEntry* Entry)
+{
+	if (CurrentActorContainer != nullptr)
+	{
+		CurrentActorContainer->Deactivate();
+	}
+	CurrentActorContainer = Entry->GetActorContainer();
+	CurrentActorContainer->Activate();
+}
