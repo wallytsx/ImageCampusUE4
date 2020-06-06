@@ -16,20 +16,24 @@ void UActorManagerWidget::NativeOnInitialized()
 
 	for (AActor* Actor : Actors)
 	{
-		ActorContainers.Add(Cast<AActorContainer>(Actor));
+		AActorContainer* ActorContainer = Cast<AActorContainer>(Actor);
+		ActorContainers.Add(ActorContainer);
 
-		UButton* Button = WidgetTree->ConstructWidget<UButton>(UButton::StaticClass());
+		UActorManagerEntry* Entry = CreateWidget<UButton>(UButton::StaticClass());
 
-		Button->OnClicked.AddDynamic(this, &ThisClass::OnButtonClicked<1>);
+		Entry->Setup(this, ActorContainer);
 
-		VBoxButtons->AddChild(Button);
-		Buttons.Add(Button);
+		VBoxButtons->AddChild(Entry);
 	}
 }
 
-template<int Index>
-void UActorManagerWidget::OnButtonClicked()
+void UActorManagerWidget::OnEntryClicked(UActorManagerEntry* Entry)
 {
-	UE_LOG(LogTemp, Log, TEXT("OnButtonClicked - %i"), Index);
+	if (CurrentActorContainer != nullptr)
+	{
+		CurrentActorContainer->Disable();
+	}
+	CurrentActorContainer = Entry->GetActorContainer();
+	CurrentActorContainer->Enable();
 }
 
