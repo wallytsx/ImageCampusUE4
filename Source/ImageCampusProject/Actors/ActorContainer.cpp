@@ -14,6 +14,8 @@ void AActorContainer::Activate()
 	for (AActor* Actor : ManagedActors)
 	{
 		Actor->SetActorHiddenInGame(false);
+		Actor->SetActorEnableCollision(ECollisionEnabled::QueryAndPhysics);
+		Actor->SetActorTickEnabled(true);
 	}
 }
 
@@ -22,5 +24,7 @@ void AActorContainer::Deactivate()
 	for (AActor* Actor : ManagedActors)
 	{
 		Actor->SetActorHiddenInGame(true);
+		Actor->SetActorEnableCollision(ECollisionEnabled::NoCollision);
+		Actor->SetActorTickEnabled(false);
 	}
 }
