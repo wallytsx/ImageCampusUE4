@@ -14,12 +14,15 @@ void UActorManagerWidget::NativeOnInitialized()
 	TArray<AActor*> Actors;
 	UGameplayStatics::GetAllActorsOfClass(this, AActorContainer::StaticClass(), Actors);
 
+	
+	
+	
 	for (AActor* Actor : Actors)
 	{
 		AActorContainer* ActorContainer = Cast<AActorContainer>(Actor);
 		ActorContainers.Add(ActorContainer);
 
-		UActorManagerEntry* Entry = CreateWidget<UButton>(UButton::StaticClass());
+		UActorManagerEntry* Entry = CreateWidget<UActorManagerEntry>(UActorManagerEntry::StaticClass());
 
 		Entry->Setup(this, ActorContainer);
 
@@ -31,9 +34,14 @@ void UActorManagerWidget::OnEntryClicked(UActorManagerEntry* Entry)
 {
 	if (CurrentActorContainer != nullptr)
 	{
-		CurrentActorContainer->Disable();
+		CurrentActorContainer->Deactivate();
 	}
 	CurrentActorContainer = Entry->GetActorContainer();
-	CurrentActorContainer->Enable();
+	CurrentActorContainer->Activate();
 }
 
+
+void UActorManagerEntry::OnButtonClicked()
+{
+	OwnerWidget->OnEntryClicked(this);
+}
