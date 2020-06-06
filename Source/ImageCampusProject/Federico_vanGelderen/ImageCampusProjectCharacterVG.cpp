@@ -160,8 +160,6 @@ void AImageCampusProjectCharacterVG::MoveRight(float Value)
 
 float AImageCampusProjectCharacterVG::TakeDamage(float DamageAmount, struct FDamageEvent const & DamageEvent, class AController * EventInstigator, AActor * DamageCauser)
 {
-	HealthComponent->Health -= DamageAmount;
-
 	return DamageAmount;
 }
 
