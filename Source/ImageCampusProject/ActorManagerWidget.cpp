@@ -31,13 +31,3 @@ void UActorManagerWidget::OnButtonClicked()
 {
 	UE_LOG(LogTemp, Log, TEXT("OnButtonClicked - %i"), Index);
 }
-
-void UActorManagerWidget::OnEntryClicked(UActorManagerEntry* Entry)
-{
-	if (CurrentActorContainer != nullptr)
-	{
-		CurrentActorContainer->Deactivate();
-	}
-	CurrentActorContainer = Entry->GetActorContainer();
-	CurrentActorContainer->Activate();
-}

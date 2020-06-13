@@ -7,6 +7,7 @@
 #include "BaseWeapon.generated.h"
 
 class USkeletalMeshComponent;
+class USkeletalMesh;
 
 UCLASS()
 class IMAGECAMPUSPROJECT_API ABaseWeapon : public AActor
@@ -37,6 +38,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	USkeletalMeshComponent* MeshTP;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSoftObjectPtr<USkeletalMesh> MeshTP2;
+
 	UPROPERTY(EditDefaultsOnly, Category = "Projectile | Muzzle Flash ")
 	FName MuzzleFlashSocketName;
 
@@ -58,6 +62,9 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPickedUp(class AImageCampusProjectCharacter* Character);
+
+	UFUNCTION()
+	void OnAssetLoadComplete();
 
 public:	
 

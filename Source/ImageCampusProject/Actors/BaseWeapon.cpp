@@ -6,6 +6,9 @@
 #include "TimerManager.h"
 #include "ImageCampusProject/ImageCampusProjectCharacter.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "UObject/SoftObjectPtr.h"
+#include "ImageCampusProject/AssetLoaderManager.h"
 
 // Sets default values
 ABaseWeapon::ABaseWeapon()
@@ -30,6 +33,9 @@ void ABaseWeapon::BeginPlay()
 	PickupCollision->OnComponentBeginOverlap.AddUniqueDynamic(this, &ThisClass::OnPickupCollisionOverlapped);
 
 	CurrentAmmo = DefaultAmmo;
+	AAssetLoaderManager* AssetLoader = Cast<AAssetLoaderManager>(AAssetLoaderManager::StaticClass()->GetDefaultObject());
+	AssetLoader->AddAssetToLoad(MeshTP2);
+	AssetLoader->OnAssetsLoadedDelegate.AddUObject(this, &ABaseWeapon::OnAssetLoadComplete);
 }
 
 void ABaseWeapon::EndPlay(EEndPlayReason::Type EndPlayReason)
@@ -58,6 +64,11 @@ void ABaseWeapon::OnPickupCollisionOverlapped(UPrimitiveComponent* OverlappedCom
 
 	TArray<AActor*> Actors;
 	UGameplayStatics::GetAllActorsOfClass(this, ABaseWeapon::StaticClass(), Actors);
+}
+
+void ABaseWeapon::OnAssetLoadComplete()
+{
+	MeshTP->SetSkeletalMesh(MeshTP2.Get());
 }
 
 void ABaseWeapon::Fire()
